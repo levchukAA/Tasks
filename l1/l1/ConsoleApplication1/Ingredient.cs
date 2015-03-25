@@ -5,11 +5,11 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
-    class Ingredient
+    abstract class Ingredient
     {
         private double weight;
         private string name;
-        private double kcal100g;
+        private double kcal100;
 
         public string Name
         {
@@ -17,16 +17,28 @@ namespace ConsoleApplication1
             set { name = value; }
         }
 
-        public double Calories
+        public double Kcal100
         {
-            get { return kcal100g; }
-            set { kcal100g = value; }
+            get { return kcal100; }
+            set { kcal100 = value; }
         }
+
 
         public double Weight
         {
             get { return weight; }
             set { weight = value; }
+        }
+
+        public double KcalFull()
+        {
+            return kcal100 * weight / 100;
+        }
+
+        public string InfoString()
+        { 
+            return "Название: " + name + "\n" + "Вес: " + weight + "\n" + "Количество калорий: "
+                + KcalFull();
         }
     }
 }

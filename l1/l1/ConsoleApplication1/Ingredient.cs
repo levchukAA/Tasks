@@ -9,7 +9,7 @@ namespace ConsoleApplication1
     {
         private double weight;
         private string name;
-        private double kcal100;
+        private double calories100;
 
         public string Name
         {
@@ -17,12 +17,11 @@ namespace ConsoleApplication1
             set { name = value; }
         }
 
-        public double Kcal100
+        public double Caloriesl100
         {
-            get { return kcal100; }
-            set { kcal100 = value; }
+            get { return calories100; }
+            set { calories100 = value; }
         }
-
 
         public double Weight
         {
@@ -30,15 +29,15 @@ namespace ConsoleApplication1
             set { weight = value; }
         }
 
-        public double KcalFull()
+        public double FullCalories()
         {
-            return kcal100 * weight / 100;
+            return calories100 * weight / 100;
         }
 
         public string InfoString()
         { 
             return "Название: " + name + "\n" + "Вес: " + weight + "\n" + "Количество калорий: "
-                + KcalFull();
+                + FullCalories();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
-    class Class1
+    class Ingredient1
     {
     }
 }

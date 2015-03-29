@@ -36,7 +36,7 @@ namespace ConsoleApplication1
 
         public string InfoString()
         { 
-            return "Название: " + name + "\n" + "Вес: " + weight + "\n" + "Количество калорий: "
+            return "Name: " + name + "\n" + "Weight: " + weight + "\n" + "Count of calories(kcal): "
                 + FullCalories();
         }
     }

@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ingredient1.cs" />
-    <Compile Include="Ingredient2.cs" />
+    <Compile Include="LeafVegetable.cs" />
+    <Compile Include="FruitingVegetable.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

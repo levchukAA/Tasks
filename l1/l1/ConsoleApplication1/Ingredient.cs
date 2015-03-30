@@ -7,36 +7,43 @@ namespace ConsoleApplication1
 {
     abstract class Ingredient
     {
-        private double weight;
-        private string name;
-        private double calories100;
+        private double _weight;
+        private string _name;
+        private double _calories100;
+        private string _category;
 
-        public string Name
+        public Ingredient(string name, double calories100, double weight)
         {
-            get { return name; }
-            set { name = value; }
+            _name = name;
+            _weight = weight;
+            _calories100 = calories100;
         }
 
         public double Caloriesl100
         {
-            get { return calories100; }
-            set { calories100 = value; }
+            get { return _calories100; }
+            set { _calories100 = value; }
         }
 
         public double Weight
         {
-            get { return weight; }
-            set { weight = value; }
+            get { return _weight; }
+            set { _weight = value; }
         }
 
         public double FullCalories()
         {
-            return calories100 * weight / 100;
+            return _calories100 * _weight / 100;
+        }
+
+        public string Type
+        {
+            get ; set;
         }
 
         public string InfoString()
         { 
-            return "Name: " + name + "\n" + "Weight: " + weight + "\n" + "Count of calories(kcal): "
+            return "Name: " + _name + "\n" + "Weight: " + _weight + "\n" + "Count of calories(kcal): "
                 + FullCalories();
         }
     }

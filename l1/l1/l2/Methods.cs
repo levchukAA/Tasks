@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace l2
             Word varWord;
             while (m.Success)
             {
-                varWord = new Word(m.Groups[1].Value);
+                varWord = new Word(m.Value);
                 int indexWord = dictionary.IndexOf(varWord);
                 if (indexWord != -1)
                 {
@@ -46,6 +47,7 @@ namespace l2
                 m = m.NextMatch();
             }
             return dictionary;
-        } 
+        }
+
     }
 }

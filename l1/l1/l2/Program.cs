@@ -11,12 +11,9 @@ namespace l2
         static void Main(string[] args)
         {
             string text = Methods.ReadTextFile("Test.txt");
-            Console.WriteLine(text);
             List<Word> words = Methods.CreateDictionary(text);
             foreach (Word word in words)
-            {
                 word.PrintWord();
-            }
         }
     }
 }

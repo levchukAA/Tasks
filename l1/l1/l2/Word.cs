@@ -6,20 +6,38 @@ using System.Threading.Tasks;
 
 namespace l2
 {
-    class Word
+    class Word: IEquatable<Word>
     {
         private string _word;
-        private int _count;
+        private int _count = 1;
         private List<int> _numberPages = new List<int>();
 
         public Word(string word)
         {
             _word = word;
         }
+
+        public string Value
+        {
+            get { return _word; }
+            set { _word = value;  }
+        }
         public int Count 
         {
             get { return _count; }
             set { _count = value; }
+        }
+
+        public bool Equals(Word other)
+        {
+            if (this.Value == other.Value)
+                return true;
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
         }
 
         public void AddNumber(int number)

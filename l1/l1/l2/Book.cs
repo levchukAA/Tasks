@@ -10,10 +10,6 @@ namespace l2
 {
     class Book
     {
-        private string _text;
-        private string _author;
-        private string _nameBook;
-
         public Book(string path)
         {
             GetTextFile(path);
@@ -22,27 +18,15 @@ namespace l2
         public Book(string path, string author, string nameBook)
         {
             GetTextFile(path);
-            _author = author;
-            _nameBook = nameBook;
+            Author = author;
+            NameBook = nameBook;
         }
 
-        public string Text
-        {
-            get { return _text; }
-            set { _text = value; }
-        }
+        public string Text { get; set; }
 
-        public string Author
-        {
-            get { return _author; }
-            set { _author = value; }
-        }
+        public string Author { get; set; }
 
-        public string NameBook
-        {
-            get { return _nameBook; }
-            set { _nameBook = value; }
-        }
+        public string NameBook { get; set; }
 
         public void GetTextFile(string pathFile)
         {
@@ -50,7 +34,7 @@ namespace l2
             {
                 using (StreamReader sr = new StreamReader(pathFile))
                 {
-                    _text = sr.ReadToEnd();
+                    Text = sr.ReadToEnd();
                 }
             }
             catch (Exception e)
@@ -62,7 +46,7 @@ namespace l2
 
         public string[] ToPages()
         {
-            string[] lines = _text.Split('\n');
+            string[] lines = Text.Split('\n');
             int countPages = lines.Count()/10+1;
             string[] page = new string[countPages];
             for (int i = 0; i < countPages; i++)
@@ -88,12 +72,10 @@ namespace l2
             for (int i = 0; i<pages.Length; i++)
             {
                 Match m = Regex.Match(pages[i], regexWord, RegexOptions.IgnoreCase);
-                Word varWord;
-                string varMatch = "";
                 while (m.Success)
                 {
-                    varMatch = m.Value.ToLower();
-                    varWord = new Word(varMatch);
+                    var varMatch = m.Value.ToLower();
+                    var varWord = new Word(varMatch);
                     int indexWord = testDictionary.Words.IndexOf(varWord);
                     //varWord.AddNumber(i);
                     if (indexWord != -1)

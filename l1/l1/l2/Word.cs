@@ -8,29 +8,21 @@ namespace l2
 {
     class Word : IEquatable<Word>, IComparable<Word>
     {
-        private string _word;
-        private int _count = 1;
         private List<int> _numberPages = new List<int>();
 
         public Word(string word)
         {
-            _word = word;
+            Count = 1;
+            Value = word;
         }
 
-        public string Value
-        {
-            get { return _word; }
-            set { _word = value;  }
-        }
-        public int Count 
-        {
-            get { return _count; }
-            set { _count = value; }
-        }
+        public string Value { get; set; }
+
+        public int Count { get; set; }
 
         public char FirstChar
         {
-            get { return _word.ToCharArray()[0]; }
+            get { return Value.ToCharArray()[0]; }
         }
 
         public bool Equals(Word other)
@@ -71,7 +63,7 @@ namespace l2
 
         public void PrintWord()
         {
-            string printString = _word + " " + _count + ": ";
+            string printString = Value + " " + Count + ": ";
             foreach (int number in _numberPages)
                 printString = printString + number + " ";
             Console.WriteLine(printString);

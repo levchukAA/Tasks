@@ -62,42 +62,54 @@ namespace l2
 
         public string[] ToPages()
         {
-            string[] lines = _text.Split('\r');
+            string[] lines = _text.Split('\n');
             int countPages = lines.Count()/10+1;
             string[] page = new string[countPages];
             for (int i = 0; i < countPages; i++)
             {
                 int length = i*10 + 10;
-                if (length>countPages)
+                if (length>lines.Length)
                 {
-                    length = countPages;
+                    length = lines.Length;
                 }
                 for (int j = i*10; j < length; j++)
                 {
                     page[i] = page[i] + lines[j];
                 }
             }
-            Console.WriteLine(page[countPages-1]);
             return page;
         }
 
         public Dictionary CreateDictionary()
         {
+            string[] pages = ToPages();
             Dictionary testDictionary = new Dictionary();
             const string regexWord = @"([[^\wA-Za-z]+)";
-            Match m = Regex.Match(_text, regexWord, RegexOptions.IgnoreCase);
-            Word varWord;
-            string varMatch = "";
-            while (m.Success)
+            for (int i = 0; i<pages.Length; i++)
             {
-                varMatch = m.Value.ToLower();
-                varWord = new Word(varMatch);
-                int indexWord = testDictionary.Words.IndexOf(varWord);
-                if (indexWord != -1)
-                    testDictionary.GetItem(indexWord).Count = testDictionary.GetItem(indexWord).Count + 1;
-                else testDictionary.Add(varWord);
-                m = m.NextMatch();
+                Match m = Regex.Match(pages[i], regexWord, RegexOptions.IgnoreCase);
+                Word varWord;
+                string varMatch = "";
+                while (m.Success)
+                {
+                    varMatch = m.Value.ToLower();
+                    varWord = new Word(varMatch);
+                    int indexWord = testDictionary.Words.IndexOf(varWord);
+                    //varWord.AddNumber(i);
+                    if (indexWord != -1)
+                    {
+                        testDictionary.GetItem(indexWord).Count = testDictionary.GetItem(indexWord).Count + 1;
+                        testDictionary.GetItem(indexWord).AddNumber(i);
+                    }
+                    else
+                    {
+                        testDictionary.Add(varWord);
+                        testDictionary.Words.Last().AddNumber(i);
+                    }
+                    m = m.NextMatch();
+                }
             }
+            
             testDictionary.Words.Sort();
             return testDictionary;
         }

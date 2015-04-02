@@ -14,7 +14,6 @@ namespace l2
             Dictionary testDictionary = testBook.CreateDictionary();
             testBook.PrintInfoBook();
             testDictionary.PrintDictionary();
-            testBook.ToPages();
         }
     }
 }

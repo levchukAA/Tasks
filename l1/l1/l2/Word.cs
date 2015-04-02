@@ -56,9 +56,17 @@ namespace l2
 
         public void AddNumber(int number)
         {
-            int lastPage = _numberPages.Last();
-            if( lastPage != number)
-            _numberPages.Add(number);
+            int page = number + 1;
+            try
+            {
+                int lastPage = _numberPages.Last();
+                if (lastPage != page)
+                    _numberPages.Add(page);
+            }
+            catch
+            {
+                _numberPages.Add(page);
+            }
         }
 
         public void PrintWord()

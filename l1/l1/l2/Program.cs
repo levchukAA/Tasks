@@ -10,10 +10,11 @@ namespace l2
     {
         static void Main(string[] args)
         {
-            string text = Methods.ReadTextFile("Test.txt");
-            List<Word> words = Methods.CreateDictionary(text);
-            foreach (Word word in words)
-                word.PrintWord();
+            Book testBook = new Book("Test.txt", "Lermontov", "Death of the Poet");
+            Dictionary testDictionary = testBook.CreateDictionary();
+            testBook.PrintInfoBook();
+            testDictionary.PrintDictionary();
+            testBook.ToPages();
         }
     }
 }

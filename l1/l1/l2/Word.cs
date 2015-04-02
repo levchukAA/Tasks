@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace l2
 {
-    class Word: IEquatable<Word>
+    class Word : IEquatable<Word>, IComparable<Word>
     {
         private string _word;
         private int _count = 1;
@@ -28,6 +28,11 @@ namespace l2
             set { _count = value; }
         }
 
+        public char FirstChar
+        {
+            get { return _word.ToCharArray()[0]; }
+        }
+
         public bool Equals(Word other)
         {
             if (this.Value == other.Value)
@@ -38,6 +43,15 @@ namespace l2
         public override int GetHashCode()
         {
             return Value.GetHashCode();
+        }
+
+        public int CompareTo(Word compareWord)
+        {
+            if (compareWord == null)
+                return 1;
+
+            else
+                return Value.CompareTo(compareWord.Value);
         }
 
         public void AddNumber(int number)
@@ -51,9 +65,7 @@ namespace l2
         {
             string printString = _word + " " + _count + ": ";
             foreach (int number in _numberPages)
-            {
                 printString = printString + number + " ";
-            }
             Console.WriteLine(printString);
         }
         } 

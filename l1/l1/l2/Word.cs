@@ -22,7 +22,7 @@ namespace l2
 
         public char FirstChar
         {
-            get { return Value.ToCharArray()[0]; }
+            get { return Value[0]; }
         }
 
         public bool Equals(Word other)

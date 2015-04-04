@@ -9,7 +9,7 @@ namespace l2
 {
     class Dictionary
     {
-        private List<Word> _dictionary = new List<Word>();
+        private List<Word> _words = new List<Word>();
 
         public Dictionary()
         {
@@ -18,32 +18,32 @@ namespace l2
 
         public List<Word> Words
         {
-            get { return _dictionary; }
+            get { return _words; }
         }
 
         public Word GetItem(int index)
         {
-            return _dictionary[index];
+            return _words[index];
         }
         public void Add(Word word)
         {
-            _dictionary.Add(word);
+            _words.Add(word);
         }
 
         public void PrintDictionary()
         {
-            Console.WriteLine(_dictionary[0].FirstChar);
-            _dictionary[0].PrintWord();
-            for (int i = 1; i<_dictionary.Count; i++)
+            Console.WriteLine(_words[0].FirstChar);
+            _words[0].PrintWord();
+            for (int i = 1; i<_words.Count; i++)
             {
-                if (_dictionary[i].FirstChar == _dictionary[i - 1].FirstChar)
+                if (_words[i].FirstChar == _words[i - 1].FirstChar)
                 {
-                    _dictionary[i].PrintWord();
+                    _words[i].PrintWord();
                 }
                 else
                 {
-                    Console.WriteLine(_dictionary[i].FirstChar);
-                    _dictionary[i].PrintWord();
+                    Console.WriteLine(_words[i].FirstChar);
+                    _words[i].PrintWord();
                 }
             }
         }

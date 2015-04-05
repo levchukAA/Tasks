@@ -17,8 +17,9 @@ namespace NewYear
         public string Name { get; set; }
         public int KcalPer100 { get; set; }
         public int Weight { get; set; }
-        public int Calories { get { return KcalPer100*Weight; } }
-        public int Sugar { get; set; }
+        public double Calories { get { return KcalPer100*Weight/100; } }
+        public int SugarPer100 { get; set; }
+        public abstract double SpecialProp { get; }
         public int CompareTo(Sweet compareSweet)
         {
             if (compareSweet == null)
@@ -27,9 +28,7 @@ namespace NewYear
                 return Calories.CompareTo(compareSweet.Calories);
         }
 
-        public override string ToString()
-        {
-            return Name + " | " + Weight;
-        }
+        public abstract void Show();
+
     }
 }

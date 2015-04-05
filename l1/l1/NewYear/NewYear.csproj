@@ -43,9 +43,10 @@
   <ItemGroup>
     <Compile Include="FlourSweet.cs" />
     <Compile Include="Gift.cs" />
+    <Compile Include="InfoFromFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SugarySweet.cs" />
+    <Compile Include="ChocoSweet.cs" />
     <Compile Include="Sweet.cs" />
   </ItemGroup>
   <ItemGroup>

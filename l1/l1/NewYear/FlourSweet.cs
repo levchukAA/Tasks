@@ -14,11 +14,26 @@ namespace NewYear
     }
     class FlourSweet: Sweet
     {
-        public FlourSweet(string name, int weight, FlourSweetType type) 
+        public FlourSweet(string name, int weight, int flourPer100) 
             : base(name, weight)
         {
-            Type = type;
+            Flour = flourPer100;
         }
+
+        public FlourSweet()
+        {
+            Name = "";
+        }
+
+        public int Flour { get; set; }
         public FlourSweetType Type { get; set; }
+        public override double SpecialProp { get { return Weight / 100 * Flour; } }
+
+        public override void Show()
+        {
+            string info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
+                 + "Flour in 100: " + Flour + "; " + "Sugar in 100: " + SugarPer100;
+            Console.WriteLine(info);
+        }
     }
 }

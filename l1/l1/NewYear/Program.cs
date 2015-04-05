@@ -10,10 +10,12 @@ namespace NewYear
     {
         static void Main(string[] args)
         {
-            FlourSweet proba = new FlourSweet();
-            Gift gift = new Gift();
-            gift.Add(proba);
+            Gift gift = new Gift("Gift.txt");
+            gift.Show();
             gift.Sweets.Sort();
+            Console.WriteLine("After sort gift by calories: ");
+            gift.Show();
+            gift.SearchSweet(10, 20);
         }
     }
 }

@@ -31,9 +31,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SaleProject.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +54,84 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveRecord.cs" />
+    <Compile Include="Methods.cs" />
+    <Compile Include="Migrations\201504091751261_InitialCreate.cs" />
+    <Compile Include="Migrations\201504091751261_InitialCreate.Designer.cs">
+      <DependentUpon>201504091751261_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504091904146_AddUrl.cs" />
+    <Compile Include="Migrations\201504091904146_AddUrl.Designer.cs">
+      <DependentUpon>201504091904146_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504091907111_AddUser.cs" />
+    <Compile Include="Migrations\201504091907111_AddUser.Designer.cs">
+      <DependentUpon>201504091907111_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504091909564_ChangeDisplayName.cs" />
+    <Compile Include="Migrations\201504091909564_ChangeDisplayName.Designer.cs">
+      <DependentUpon>201504091909564_ChangeDisplayName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504091951047_DeleteOld.cs" />
+    <Compile Include="Migrations\201504091951047_DeleteOld.Designer.cs">
+      <DependentUpon>201504091951047_DeleteOld.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504092045097_AddItems.cs" />
+    <Compile Include="Migrations\201504092045097_AddItems.Designer.cs">
+      <DependentUpon>201504092045097_AddItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504092100236_Example.cs" />
+    <Compile Include="Migrations\201504092100236_Example.Designer.cs">
+      <DependentUpon>201504092100236_Example.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WatcherCsv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WatcherCsv.Designer.cs">
+      <DependentUpon>WatcherCsv.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504091751261_InitialCreate.resx">
+      <DependentUpon>201504091751261_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504091904146_AddUrl.resx">
+      <DependentUpon>201504091904146_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504091907111_AddUser.resx">
+      <DependentUpon>201504091907111_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504091909564_ChangeDisplayName.resx">
+      <DependentUpon>201504091909564_ChangeDisplayName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504091951047_DeleteOld.resx">
+      <DependentUpon>201504091951047_DeleteOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504092045097_AddItems.resx">
+      <DependentUpon>201504092045097_AddItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504092100236_Example.resx">
+      <DependentUpon>201504092100236_Example.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatcherCsv.resx">
+      <DependentUpon>WatcherCsv.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

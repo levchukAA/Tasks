@@ -1,31 +1,36 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Odbc;
-using System.Data.OleDb;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SaleProject
 {
-    class Program
+    partial class WatcherCsv : ServiceBase
     {
-        private static void Main(string[] args)
+        FileSystemWatcher watcher = new FileSystemWatcher(@"D:\epam\Tasks\l1\l1\SaleProject\bin\Debug", "*.csv");
+        public WatcherCsv()
         {
-            Run();
-            ParallelExample();
+            InitializeComponent();
         }
 
-        public static void Run()
+        protected override void OnStart(string[] args)
         {
-            var watcher = new FileSystemWatcher(@"D:\epam\Tasks\l1\l1\SaleProject\bin\Debug", "*.csv");
+            AddLog("start");
             watcher.Created += OnCreated;
             watcher.EnableRaisingEvents = true;
+        }
+
+        protected override void OnStop()
+        {
+            if (watcher != null)
+                watcher.Dispose();
+            AddLog("stop");
         }
         private static void OnCreated(object source, FileSystemEventArgs e)
         {
@@ -39,7 +44,7 @@ namespace SaleProject
                         Date = dataTable.Rows[i][0].ToString(),
                         Client = dataTable.Rows[i][1].ToString(),
                         Goods = dataTable.Rows[i][2].ToString(),
-                        Amount = (int) dataTable.Rows[i][3]
+                        Amount = (int)dataTable.Rows[i][3]
                     };
                     dataBase.Archive.Add(record);
                 }
@@ -47,17 +52,19 @@ namespace SaleProject
                 dataBase.SaveChanges();
             }
         }
-
-        public static void ParallelExample()
+        private void AddLog(string log)
         {
-            ParallelOptions parOpts = new ParallelOptions();
-            parOpts.MaxDegreeOfParallelism = 2;
-
+            string serviceName = "WatcherCsv";
+            try
+            {
+                if (!EventLog.SourceExists(serviceName))
+                {
+                    EventLog.CreateEventSource(serviceName, serviceName);
+                }
+                eventLog1.Source = serviceName;
+                eventLog1.WriteEntry(log);
+            }
+            catch {}
         }
-    }
-    
-    public class BloggingContext : DbContext
-    {
-        public DbSet<ArchiveRecord> Archive { get; set; } 
     }
 }

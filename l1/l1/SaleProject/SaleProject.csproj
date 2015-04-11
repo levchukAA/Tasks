@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201504092100236_Example.Designer.cs">
       <DependentUpon>201504092100236_Example.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504110019418_AddChanges.cs" />
+    <Compile Include="Migrations\201504110019418_AddChanges.Designer.cs">
+      <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -125,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504092100236_Example.resx">
       <DependentUpon>201504092100236_Example.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504110019418_AddChanges.resx">
+      <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>

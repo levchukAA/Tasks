@@ -32,7 +32,7 @@ namespace NewYear
         public override void Show()
         {
             string info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
-                 + "Choco in 100: " + Choco + "; " + "Sugar in 100: " + SugarPer100; ;
+                 + "Choco in 100: " + Choco + "; " + "Sugar in 100: " + SugarPer100;
             Console.WriteLine(info);
         }
 

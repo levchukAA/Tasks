@@ -8,7 +8,7 @@ namespace l2
 {
     class Word : IEquatable<Word>, IComparable<Word>
     {
-        private List<int> _numberPages = new List<int>();
+        private readonly List<int> _numberPages = new List<int>();
 
         public Word(string word)
         {
@@ -27,9 +27,7 @@ namespace l2
 
         public bool Equals(Word other)
         {
-            if (this.Value == other.Value)
-                return true;
-            return false;
+            return Value == other.Value;
         }
 
         public override int GetHashCode()
@@ -43,7 +41,7 @@ namespace l2
                 return 1;
 
             else
-                return Value.CompareTo(compareWord.Value);
+                return String.Compare(Value, compareWord.Value, StringComparison.Ordinal);
         }
 
         public void AddNumber(int number)

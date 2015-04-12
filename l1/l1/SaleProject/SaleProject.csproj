@@ -88,6 +88,18 @@
     <Compile Include="Migrations\201504110019418_AddChanges.Designer.cs">
       <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504111911435_DateToString.cs" />
+    <Compile Include="Migrations\201504111911435_DateToString.Designer.cs">
+      <DependentUpon>201504111911435_DateToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504111915091_Example1.cs" />
+    <Compile Include="Migrations\201504111915091_Example1.Designer.cs">
+      <DependentUpon>201504111915091_Example1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504111921100_ChangeDate.cs" />
+    <Compile Include="Migrations\201504111921100_ChangeDate.Designer.cs">
+      <DependentUpon>201504111921100_ChangeDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
@@ -132,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504110019418_AddChanges.resx">
       <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504111911435_DateToString.resx">
+      <DependentUpon>201504111911435_DateToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504111915091_Example1.resx">
+      <DependentUpon>201504111915091_Example1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504111921100_ChangeDate.resx">
+      <DependentUpon>201504111921100_ChangeDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>

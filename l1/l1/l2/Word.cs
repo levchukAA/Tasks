@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace l2
 {
-    class Word : IEquatable<Word>, IComparable<Word>
+    public class Word : IEquatable<Word>, IComparable<Word>
     {
         private readonly List<int> _numberPages = new List<int>();
 
@@ -37,19 +37,15 @@ namespace l2
 
         public int CompareTo(Word compareWord)
         {
-            if (compareWord == null)
-                return 1;
-
-            else
-                return String.Compare(Value, compareWord.Value, StringComparison.Ordinal);
+            return compareWord == null ? 1 : String.Compare(Value, compareWord.Value, StringComparison.Ordinal);
         }
 
         public void AddNumber(int number)
         {
-            int page = number + 1;
+            var page = number + 1;
             try
             {
-                int lastPage = _numberPages.Last();
+                var lastPage = _numberPages.Last();
                 if (lastPage != page)
                     _numberPages.Add(page);
             }
@@ -61,9 +57,8 @@ namespace l2
 
         public void PrintWord()
         {
-            string printString = Value + " " + Count + ": ";
-            foreach (int number in _numberPages)
-                printString = printString + number + " ";
+            var printString = Value + " " + Count + ": ";
+            printString = _numberPages.Aggregate(printString, (current, number) => current + number + " ");
             Console.WriteLine(printString);
         }
         } 

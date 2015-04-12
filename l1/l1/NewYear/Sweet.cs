@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NewYear
 {
-    abstract class Sweet: IComparable<Sweet>
+    public abstract class Sweet: IComparable<Sweet>
     {
         public Sweet() : this("default", 100) { }
         public Sweet(string name, int weight)
@@ -22,10 +22,7 @@ namespace NewYear
         public abstract double SpecialProp { get; }
         public int CompareTo(Sweet compareSweet)
         {
-            if (compareSweet == null)
-                return 1;
-            else
-                return Calories.CompareTo(compareSweet.Calories);
+            return compareSweet == null ? 1 : Calories.CompareTo(compareSweet.Calories);
         }
 
         public abstract void Show();

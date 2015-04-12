@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace l2
 {
-    class Book
+    public class Book
     {
         public Book(string path)
         {
@@ -32,7 +32,7 @@ namespace l2
         {
             try
             {
-                using (StreamReader sr = new StreamReader(pathFile))
+                using (var sr = new StreamReader(pathFile))
                 {
                     Text = sr.ReadToEnd();
                 }
@@ -46,12 +46,12 @@ namespace l2
 
         public string[] ToPages()
         {
-            string[] lines = Text.Split('\n');
-            int countPages = lines.Count()/10+1;
-            string[] page = new string[countPages];
-            for (int i = 0; i < countPages; i++)
+            var lines = Text.Split('\n');
+            var countPages = lines.Count()/10+1;
+            var page = new string[countPages];
+            for (var i = 0; i < countPages; i++)
             {
-                int length = i*10 + 10;
+                var length = i*10 + 10;
                 if (length>lines.Length)
                 {
                     length = lines.Length;
@@ -66,17 +66,17 @@ namespace l2
 
         public Dictionary CreateDictionary()
         {
-            string[] pages = ToPages();
-            Dictionary testDictionary = new Dictionary();
+            var pages = ToPages();
+            var testDictionary = new Dictionary();
             const string regexWord = @"([[^\wA-Za-z]+)";
-            for (int i = 0; i<pages.Length; i++)
+            for (var i = 0; i<pages.Length; i++)
             {
-                Match m = Regex.Match(pages[i], regexWord, RegexOptions.IgnoreCase);
+                var m = Regex.Match(pages[i], regexWord, RegexOptions.IgnoreCase);
                 while (m.Success)
                 {
                     var varMatch = m.Value.ToLower();
                     var varWord = new Word(varMatch);
-                    int indexWord = testDictionary.Words.IndexOf(varWord);
+                    var indexWord = testDictionary.Words.IndexOf(varWord);
                     //varWord.AddNumber(i);
                     if (indexWord != -1)
                     {
@@ -98,7 +98,7 @@ namespace l2
 
         public void PrintInfoBook()
         {
-            string info = "The book " + NameBook + " is written by " + Author;
+            var info = "The book " + NameBook + " is written by " + Author;
             Console.WriteLine(info);
         }
     }

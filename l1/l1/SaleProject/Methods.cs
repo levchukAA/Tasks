@@ -4,16 +4,17 @@ using System.Data;
 using System.Data.Odbc;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SaleProject
 {
-    class Methods
+    public class Methods
     {
         private const string Folder = @"D:\epam\Tasks\l1\l1\SaleProject\bin\Debug";
-        private static readonly FileSystemWatcher Watcher = new FileSystemWatcher(Folder, "*.csv");
+        public static readonly FileSystemWatcher Watcher = new FileSystemWatcher(Folder, "*.csv");
         public static DataTable GetTableCsv(string file)
         {
             var connection = new OdbcConnection(@"Driver={Microsoft Text Driver (*.txt; *.csv)};
@@ -30,10 +31,7 @@ Dbq=" + Folder + ";Extensions=asc,csv,tab,txt;Persist Security Info=False");
                               "Info from files sent to database.");
             Run();
             Console.WriteLine("Press \'q\' to quit the sample.");
-            while (Console.Read() != 'q') { }
-            Console.WriteLine("Testing program which search all .csv files in catalog with the help Parallel programming. " +
-                              "Info from files sent to database.");
-            ParallelMethod();
+            while (Console.Read() != 'q') {}
         }
         public static void Run()
         {
@@ -42,39 +40,29 @@ Dbq=" + Folder + ";Extensions=asc,csv,tab,txt;Persist Security Info=False");
         }
         private static void OnCreated(object source, FileSystemEventArgs e)
         {
-            var dataTable = GetTableCsv(e.Name);
-            TableToDataBase(dataTable);
+            ThreadPool.QueueUserWorkItem(CsvToDataBase, e.Name);
         }
-        public static void TableToDataBase(DataTable dataTable)
+        public static void CsvToDataBase(object file)
         {
+            var path = (string) file;
+            var dataTable = GetTableCsv(path);
             using (var dataBase = new BloggingContext())
             {
                 for (var i = 0; i < dataTable.Rows.Count; i++)
                 {
+                    var varTime = (DateTime) dataTable.Rows[i][0];
                     var record = new ArchiveRecord
                     {
-                        Date = dataTable.Rows[i][0].ToString(),
-                        Client = dataTable.Rows[i][1].ToString(),
-                        Goods = dataTable.Rows[i][2].ToString(),
+                        Date = varTime,
+                        Client = (string)dataTable.Rows[i][1],
+                        Goods = (string)dataTable.Rows[i][2],
                         Amount = (int)dataTable.Rows[i][3]
                     };
                     dataBase.Archive.Add(record);
                 }
-                Console.WriteLine("Processing {0} on thread {1}", dataTable.TableName, Thread.CurrentThread.ManagedThreadId);
-                //Console.WriteLine("In DataBase add new file " + fileName);
+                Console.WriteLine("In DataBase add new file {0} on thread {1}", dataTable.TableName, Thread.CurrentThread.ManagedThreadId);
                 dataBase.SaveChanges();
             }
-        }
-        public static void ParallelMethod()
-        {
-            var files = Directory.GetFiles(Folder, "*.csv");
-            var parOpts = new ParallelOptions { MaxDegreeOfParallelism = 2 };
-            Parallel.ForEach(files, parOpts, currentFile =>
-            {
-                var fileName = Path.GetFileName(currentFile);
-                var dataTable = GetTableCsv(fileName);
-                TableToDataBase(dataTable);
-            });
         }
     }
 }

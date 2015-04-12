@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYear", "NewYear\NewYear.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaleProject", "SaleProject\SaleProject.csproj", "{6E65CB20-CCF9-44DB-851F-F82878E9945A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATS", "ATS\ATS.csproj", "{56F49048-4A2C-45ED-A8C0-6318513961BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,16 @@ Global
 		{6E65CB20-CCF9-44DB-851F-F82878E9945A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6E65CB20-CCF9-44DB-851F-F82878E9945A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6E65CB20-CCF9-44DB-851F-F82878E9945A}.Release|x86.ActiveCfg = Release|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{56F49048-4A2C-45ED-A8C0-6318513961BE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

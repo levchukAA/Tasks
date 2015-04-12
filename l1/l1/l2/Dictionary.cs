@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace l2
 {
-    class Dictionary
+    public class Dictionary
     {
-        private List<Word> _words = new List<Word>();
-
-        public Dictionary()
-        {
-            
-        }
+        private readonly List<Word> _words = new List<Word>();
 
         public List<Word> Words
         {
@@ -34,7 +29,7 @@ namespace l2
         {
             Console.WriteLine(_words[0].FirstChar);
             _words[0].PrintWord();
-            for (int i = 1; i<_words.Count; i++)
+            for (var i = 1; i<_words.Count; i++)
             {
                 if (_words[i].FirstChar == _words[i - 1].FirstChar)
                 {

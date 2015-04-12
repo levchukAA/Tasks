@@ -10,8 +10,8 @@ namespace l2
     {
         static void Main(string[] args)
         {
-            Book testBook = new Book("Test.txt", "Lermontov", "Death of the Poet");
-            Dictionary testDictionary = testBook.CreateDictionary();
+            var testBook = new Book("Test.txt", "Lermontov", "Death of the Poet");
+            var testDictionary = testBook.CreateDictionary();
             testBook.PrintInfoBook();
             testDictionary.PrintDictionary();
         }

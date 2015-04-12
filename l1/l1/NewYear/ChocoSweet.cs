@@ -13,7 +13,7 @@ namespace NewYear
         Chocolate,
         ChocoHalva
     }
-    class ChocoSweet: Sweet
+    public class ChocoSweet: Sweet
     {
         public ChocoSweet(string name, int weight, int chocoPer100) 
             : base(name, weight)
@@ -31,7 +31,7 @@ namespace NewYear
         public override double SpecialProp { get { return Weight/100*Choco; } }
         public override void Show()
         {
-            string info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
+            var info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
                  + "Choco in 100: " + Choco + "; " + "Sugar in 100: " + SugarPer100;
             Console.WriteLine(info);
         }

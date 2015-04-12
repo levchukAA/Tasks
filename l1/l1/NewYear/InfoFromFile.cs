@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace NewYear
 {
-    class InfoFromFile
+    public class InfoFromFile
     {
         public static string GetTextFile(string pathFile)
         {
-            string text = "";
+            var text = "";
             try
             {
-                using (StreamReader sr = new StreamReader(pathFile))
+                using (var sr = new StreamReader(pathFile))
                 {
                     text = sr.ReadToEnd();
                 }

@@ -26,6 +26,7 @@ namespace SaleProject
 
         protected override void OnStop()
         {
+            Methods.Watcher.Dispose();
             AddLog("stop");
         }
         

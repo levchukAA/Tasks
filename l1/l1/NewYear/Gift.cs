@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace NewYear
 {
-    class Gift
+    public class Gift
     {
         private readonly List<Sweet> _sweets = new List<Sweet>();
         public Gift() { }
         public Gift(string path)
         {
-            string info = InfoFromFile.GetTextFile(path);
+            var info = InfoFromFile.GetTextFile(path);
             CreateGift(info);
         }
 
@@ -30,13 +30,9 @@ namespace NewYear
         
         public int TotalWeight()
         {
-            int totalWeight = 0;
-            foreach (var sweet in Sweets)
-            {
-                totalWeight = totalWeight + sweet.Weight;
-            }
-            return totalWeight;
+            return Sweets.Aggregate(0, (current, sweet) => current + sweet.Weight);
         }
+
         public void Show()
         {
             Console.WriteLine("Gift contains: ");
@@ -49,15 +45,15 @@ namespace NewYear
 
         public void CreateGift(string text)
         {
-            string[] infoSweets = text.Split('\n');
-            int countChocoSweet = Int32.Parse(infoSweets[0]);
-            int countFlourSweet = Int32.Parse(infoSweets[countChocoSweet + 1]);
-            ChocoSweet[] cSweets = new ChocoSweet[countChocoSweet];
-            FlourSweet[] fSweets = new FlourSweet[countFlourSweet];
-            for (int i = 0; i < countChocoSweet; i++)
+            var infoSweets = text.Split('\n');
+            var countChocoSweet = Int32.Parse(infoSweets[0]);
+            var countFlourSweet = Int32.Parse(infoSweets[countChocoSweet + 1]);
+            var cSweets = new ChocoSweet[countChocoSweet];
+            var fSweets = new FlourSweet[countFlourSweet];
+            for (var i = 0; i < countChocoSweet; i++)
             {
                 cSweets[i] = new ChocoSweet();
-                string[] varStrings = infoSweets[i + 1].Split('|');
+                var varStrings = infoSweets[i + 1].Split('|');
                 cSweets[i].Name = varStrings[0];
                 cSweets[i].Weight = Int32.Parse(varStrings[1]);
                 cSweets[i].Type = (ChocoSweetType) Enum.Parse(typeof (ChocoSweetType), varStrings[2]);
@@ -66,10 +62,10 @@ namespace NewYear
                 cSweets[i].Choco = Int32.Parse(varStrings[5]);
                 Sweets.Add(cSweets[i]);
             }
-            for (int i = 0; i < countFlourSweet; i++)
+            for (var i = 0; i < countFlourSweet; i++)
             {
                 fSweets[i] = new FlourSweet();
-                string[] varStrings = infoSweets[i + countChocoSweet + 2].Split('|');
+                var varStrings = infoSweets[i + countChocoSweet + 2].Split('|');
                 fSweets[i].Name = varStrings[0];
                 fSweets[i].Weight = Int32.Parse(varStrings[1]);
                 fSweets[i].Type = (FlourSweetType) Enum.Parse(typeof (FlourSweetType), varStrings[2]);

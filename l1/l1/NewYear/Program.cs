@@ -10,7 +10,7 @@ namespace NewYear
     {
         static void Main(string[] args)
         {
-            Gift gift = new Gift("Gift.txt");
+            var gift = new Gift("Gift.txt");
             gift.Show();
             gift.Sweets.Sort();
             Console.WriteLine("After sort gift by calories: ");

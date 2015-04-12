@@ -12,7 +12,7 @@ namespace NewYear
         Cookie,
         Cake
     }
-    class FlourSweet: Sweet
+    public class FlourSweet: Sweet
     {
         public FlourSweet(string name, int weight, int flourPer100) 
             : base(name, weight)
@@ -31,7 +31,7 @@ namespace NewYear
 
         public override void Show()
         {
-            string info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
+            var info = "Name: " + Name + "; " + "Calories: " + Calories + "; "
                  + "Flour in 100: " + Flour + "; " + "Sugar in 100: " + SugarPer100;
             Console.WriteLine(info);
         }

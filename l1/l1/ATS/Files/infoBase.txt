@@ -1,0 +1,7 @@
+Clients in ATS:
+Anton Levchuk | 63268 | 0 | Default
+Roman Shirokov | 96861 | 1 | Default
+Emre Can | 51651 | 2 | Default
+Artem Karpovich | 55060 | 3 | Default
+-----------------------------------------------
+All calls in ATS:

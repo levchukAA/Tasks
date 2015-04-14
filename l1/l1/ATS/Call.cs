@@ -7,12 +7,14 @@ namespace ATS
 {
     public class Call
     {
+        public Port Port0 { get; set; }
         public Port Port1 { get; set; }
-        public Port Port2 { get; set; }
         public int Duration { get; set; }
+
         public override string ToString()
         {
-            return ATS.SearchClient(Port1).Show() + " | " + ATS.SearchClient(Port2).Show() + " | " + Duration;
+            return ATS.Clients[Port0.Id].FirstName + " " + ATS.Clients[Port0.Id].LastName + " - "
+                   + ATS.Clients[Port0.Id].FirstName + " " + ATS.Clients[Port0.Id].LastName + " | " + Duration;
         }
     }
 }

@@ -7,40 +7,43 @@ namespace ATS
 {
     public enum StatusTariff
     {
-        LowCost,
-        Costly
+        Unsociable,
+        Default,
+        Active
     }
 
     public class Tariff
     {
-        public Tariff()
+        public Tariff(StatusTariff tariff)
         {
-            Type = StatusTariff.LowCost;
-        }
-        public StatusTariff Type { get; set; }
-        public int Arrear { get; set; }
-
-        public int Cost
-        {
-            get
+            Type = tariff;
+            switch (Type)
             {
-                switch (Type)
-                {
-                    case StatusTariff.LowCost:
-                        return 10;
-                    case StatusTariff.Costly:
-                        return 14;
-                    default:
-                        return 0;
-                }
-            } 
-            
+                case StatusTariff.Unsociable:
+                    MonthCost = 10;
+                    MinuteCost = 2;
+                    break;
+                case StatusTariff.Default:
+                    MonthCost = 12;
+                    MinuteCost = 1;
+                    break;
+                case StatusTariff.Active:
+                    MonthCost = 14;
+                    MinuteCost = 0;
+                    break;
+            }
         }
+
+        public StatusTariff Type { get; set; }
+        public int MinuteCost { get; set; }
+        public int MonthCost { get; set; }
+        public double Arrear { get; set; }
+        public int Cost { get; set; }
+
         public void AddCall(Call call)
         {
-            Arrear = Arrear + call.Duration*Cost\60;
+            Arrear = Arrear + call.Duration*Cost/60;
         }
 
-        
     }
 }

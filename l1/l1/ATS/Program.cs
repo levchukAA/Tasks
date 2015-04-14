@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace ATS
 {
-    class Program
+    internal class Program
     {
         private static void Main(string[] args)
         {
             var ats = new ATS();
-            ats.GenerateContract(@"d:\epam\Tasks\l1\l1\ATS\Contracts\Contract1.txt");
+            ats.ReadContracts(@"d:\epam\Tasks\l1\l1\ATS\Files\Contract1.txt");
+            ats.InformationAtsToFile();
+            
         }
     }
 }

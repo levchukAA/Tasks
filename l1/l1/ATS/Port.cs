@@ -11,14 +11,17 @@ namespace ATS
         Off,
         Busy
     }
+
     public class Port
     {
         public Port(int numberPort)
         {
-            NumberPort = numberPort;
+            Id = numberPort;
             Status = StatusPort.On;
         }
-        public int NumberPort { get; set; }
+
+        public int Id { get; set; }
         public StatusPort Status { get; set; }
+
     }
 }

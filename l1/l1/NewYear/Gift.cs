@@ -59,7 +59,6 @@ namespace NewYear
                 cSweets[i].Type = (ChocoSweetType) Enum.Parse(typeof (ChocoSweetType), varStrings[2]);
                 cSweets[i].KcalPer100 = Int32.Parse(varStrings[3]);
                 cSweets[i].SugarPer100 = Int32.Parse(varStrings[4]);
-                cSweets[i].Choco = Int32.Parse(varStrings[5]);
                 Sweets.Add(cSweets[i]);
             }
             for (var i = 0; i < countFlourSweet; i++)
@@ -71,7 +70,6 @@ namespace NewYear
                 fSweets[i].Type = (FlourSweetType) Enum.Parse(typeof (FlourSweetType), varStrings[2]);
                 fSweets[i].KcalPer100 = Int32.Parse(varStrings[3]);
                 fSweets[i].SugarPer100 = Int32.Parse(varStrings[4]);
-                fSweets[i].Flour = Int32.Parse(varStrings[5]);
                 Sweets.Add(fSweets[i]);
             }
         }
@@ -79,10 +77,9 @@ namespace NewYear
         public void SearchSweet(int min, int max)
         {
             Console.WriteLine("Sweets with Sugar per 100 in [{0},{1}]", min,max);
-            foreach (Sweet sweet in Sweets)
+            foreach (var sweet in Sweets.Where(sweet => sweet.SugarPer100>=min && sweet.SugarPer100<=max))
             {
-                if(sweet.SugarPer100>=min && sweet.SugarPer100<=max)
-                    sweet.Show();
+                sweet.Show();
             }
         }
     }

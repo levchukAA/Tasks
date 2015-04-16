@@ -12,8 +12,7 @@ namespace ATS
         private static void Main(string[] args)
         {
             var ats = new ATS();
-            ats.ReadContracts(@"d:\epam\Tasks\l1\l1\ATS\Files\Contract1.txt");
-            ats.InformationAtsToFile();
+            ats.WriteClients();
             
         }
     }

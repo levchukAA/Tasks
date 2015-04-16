@@ -7,8 +7,8 @@ namespace ATS
 {
     public class Call
     {
-        public Port Port0 { get; set; }
-        public Port Port1 { get; set; }
+        public Terminal Port0 { get; set; }
+        public Terminal Port1 { get; set; }
         public int Duration { get; set; }
 
         public override string ToString()

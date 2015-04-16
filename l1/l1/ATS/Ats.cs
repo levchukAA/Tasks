@@ -10,20 +10,23 @@ using NewYear;
 namespace ATS
 {
     public delegate void GenerateCallEngineHandler(object sender, GenerateCallEventArgs e);
+
     public class ATS
     {
-        
+        private const string OutputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\infoBase.txt";
+        private const string InputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Contract1.txt";
         public event GenerateCallEngineHandler AcceptCall;
+
         public ATS()
         {
+            MethodsForFiles.ReadContracts(InputFile);
             GenerateNumbers();
         }
 
         public static readonly List<Client> Clients = new List<Client>();
         public static readonly List<Call> Calls = new List<Call>();
-        private static readonly int[] ArchiveNumbers = new int[90000];
+        public static readonly int[] ArchiveNumbers = new int[90000];
 
-       
         public void GenerateNumbers()
         {
             for (var i = 0; i < ArchiveNumbers.Length; i++)
@@ -40,44 +43,6 @@ namespace ATS
             }
         }
 
-        public static void AddContract(string[] names)
-        {
-            var firstName = names[0];
-            var lastName = names[1];
-            var usingPorts = Clients.Count;
-            var newClient = new Client
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Port = new Port(usingPorts),
-                Number = ArchiveNumbers[usingPorts],
-                Tariff = new Tariff(StatusTariff.Default)
-            };
-            Clients.Add(newClient);
-        }
-
-        public void ReadContracts(string path)
-        {
-            string text = InfoFromFile.GetTextFile(path);
-            string[] clients = text.Split('\n');
-            foreach (var clientName in clients.Select(clientNames => clientNames.Split('|')))
-            {
-                AddContract(clientName);
-            }
-        }
-
-        public void ReadEvents(string path)
-        {
-            string[] calls = InfoFromFile.GetTextFile(path).Split('\n');
-            foreach (var call in calls)
-            {
-                string[] stringPorts = call.Split('|');
-                int port0 = Int32.Parse(stringPorts[0]);
-                int port1 = Int32.Parse(stringPorts[1]);
-                GenerateCallEventArgs e = new GenerateCallEventArgs(port0,port1);
-                AcceptCall += OnAcceptCall(e);
-            }
-        }
         protected virtual void OnAcceptCall(GenerateCallEventArgs e)
         {
             if (AcceptCall != null)
@@ -91,34 +56,55 @@ namespace ATS
         {
             var handler = AcceptCall;
             if (handler == null) return;
-            if (Clients[port0].Port.Status == StatusPort.On ||
-                Clients[port1].Port.Status == StatusPort.On)
+            if (Clients[port0].Terminal.Status == StatusPort.On ||
+                Clients[port1].Terminal.Status == StatusPort.On)
             {
                 Random rnd = new Random();
                 int duration = rnd.Next(1, 10);
                 Calls.Add(new Call
                 {
-                    Port0 = Clients[port0].Port,
-                    Port1 = Clients[port1].Port,
+                    Port0 = Clients[port0].Terminal,
+                    Port1 = Clients[port1].Terminal,
                     Duration = duration
                 });
-                Clients[port0].Port.Status = StatusPort.Busy;
-                Clients[port1].Port.Status = StatusPort.Busy;
+                Clients[port0].Terminal.Status = StatusPort.Busy;
+                Clients[port1].Terminal.Status = StatusPort.Busy;
             }
             else
             {
                 Console.WriteLine("Call {0} - {1} is impossible", Clients[port0].Show(), Clients[port1].Show());
             }
         }
-        public void InformationAtsToFile()
+
+        public static void AddContract(string firstName, string lastName)
+        {
+            var usingPorts = Clients.Count;
+            var newClient = new Client
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Terminal = new Terminal(usingPorts),
+                Number = ArchiveNumbers[usingPorts],
+                Tariff = new Tariff(StatusTariff.Default)
+            };
+            Clients.Add(newClient);
+        }
+
+        public void WriteClients()
         {
             string infoBase = Clients.Aggregate("Clients in ATS:\r\n",
                 (current, client) => current + client.Show() + "\r\n");
             infoBase = infoBase + "-----------------------------------------------\r\n";
             infoBase = infoBase + "All calls in ATS:\r\n";
             infoBase = Calls.Aggregate(infoBase, (current, call) => current + call.ToString() + "\r\n");
-            File.WriteAllText(@"d:\epam\Tasks\l1\l1\ATS\Files\infoBase.txt", infoBase);
-            
+            File.WriteAllText(OutputFile, infoBase);
+        }
+
+        public void WriteCalls()
+        {
+            string infoBase = "All calls in ATS:\r\n";
+            infoBase = Calls.Aggregate(infoBase, (current, call) => current + call.ToString() + "\r\n");
+            File.AppendAllText(OutputFile, infoBase);
         }
     }
 }

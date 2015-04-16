@@ -12,9 +12,9 @@ namespace ATS
         Busy
     }
 
-    public class Port
+    public class Terminal
     {
-        public Port(int numberPort)
+        public Terminal(int numberPort)
         {
             Id = numberPort;
             Status = StatusPort.On;

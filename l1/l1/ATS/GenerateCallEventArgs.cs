@@ -8,12 +8,12 @@ namespace ATS
 {
     public class GenerateCallEventArgs: EventArgs
     {
-        public GenerateCallEventArgs(int port0, int port1)
+        public GenerateCallEventArgs(int terminal0, int terminal1)
         {
-            Port0 = port0;
-            Port1 = port1;
+            Terminal0 = terminal0;
+            Terminal1 = terminal1;
         }
-        public int Port0 { get; set; }
-        public int Port1 { get; set; }
+        public int Terminal0 { get; set; }
+        public int Terminal1 { get; set; }
     }
 }

@@ -20,17 +20,6 @@ namespace ATS
                 ATS.AddContract(firstName, lastName);
             }
         }
-        public void ReadEvents(string path)
-        {
-            string[] calls = InfoFromFile.GetTextFile(path).Split('\n');
-            foreach (var call in calls)
-            {
-                string[] stringPorts = call.Split('|');
-                int port0 = Int32.Parse(stringPorts[0]);
-                int port1 = Int32.Parse(stringPorts[1]);
-                GenerateCallEventArgs e = new GenerateCallEventArgs(port0,port1);
-                //ATS.AcceptCall += OnAcceptCall(e);
-            }
-        }
+        
     }
 }

@@ -5,3 +5,5 @@ Emre Can | 0 | 2 | Default
 Artem Karpovich | 0 | 3 | Default
 -----------------------------------------------
 All calls in ATS:
+Anton Levchuk - Roman Shirokov | 4
+Emre Can - Artem Karpovich | 6

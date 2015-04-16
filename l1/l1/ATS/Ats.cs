@@ -9,13 +9,15 @@ using NewYear;
 
 namespace ATS
 {
-    public delegate void GenerateCallEngineHandler(object sender, GenerateCallEventArgs e);
+    
 
     public class ATS
     {
         private const string OutputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\infoBase.txt";
         private const string InputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Contract1.txt";
-        public event GenerateCallEngineHandler AcceptCall;
+        public delegate void GenerateCallDelegate(int port0, int port1);
+        public event GenerateCallDelegate GenerateCallEvent;
+        readonly Random _rnd = new Random();
 
         public ATS()
         {
@@ -43,24 +45,35 @@ namespace ATS
             }
         }
 
-        protected virtual void OnAcceptCall(GenerateCallEventArgs e)
+        public void ReadEvents(string path)
         {
-            if (AcceptCall != null)
+            GenerateCallEvent += GenerateCall;
+            string[] calls = InfoFromFile.GetTextFile(path).Split('\n');
+            foreach (var call in calls)
             {
-                AcceptCall(this, e);
+                string[] stringPorts = call.Split('|');
+                int port0 = Int32.Parse(stringPorts[0]);
+                int port1 = Int32.Parse(stringPorts[1]);
+                if (GenerateCallEvent != null) GenerateCallEvent(port0,port1);
             }
-
         }
+
+        /*private void OnAcceptCall(object sender, GenerateCallEventArgs e)
+        {
+            if (handler != null)
+            {
+                GenerateCall(e.Terminal0, e.Terminal1);
+                Console.WriteLine("Ebashit");
+            }
+        }*/
 
         public void GenerateCall(int port0, int port1)
         {
-            var handler = AcceptCall;
-            if (handler == null) return;
-            if (Clients[port0].Terminal.Status == StatusPort.On ||
+            if (Clients[port0].Terminal.Status == StatusPort.On &&
                 Clients[port1].Terminal.Status == StatusPort.On)
             {
-                Random rnd = new Random();
-                int duration = rnd.Next(1, 10);
+                
+                int duration = _rnd.Next(1, 10);
                 Calls.Add(new Call
                 {
                     Port0 = Clients[port0].Terminal,
@@ -95,8 +108,6 @@ namespace ATS
             string infoBase = Clients.Aggregate("Clients in ATS:\r\n",
                 (current, client) => current + client.Show() + "\r\n");
             infoBase = infoBase + "-----------------------------------------------\r\n";
-            infoBase = infoBase + "All calls in ATS:\r\n";
-            infoBase = Calls.Aggregate(infoBase, (current, call) => current + call.ToString() + "\r\n");
             File.WriteAllText(OutputFile, infoBase);
         }
 

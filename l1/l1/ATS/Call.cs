@@ -13,8 +13,7 @@ namespace ATS
 
         public override string ToString()
         {
-            return ATS.Clients[Port0.Id].FirstName + " " + ATS.Clients[Port0.Id].LastName + " - "
-                   + ATS.Clients[Port1.Id].FirstName + " " + ATS.Clients[Port1.Id].LastName + " | " + Duration;
+            return ATS.Clients[Port0.Id].Name + " - " + ATS.Clients[Port1.Id].Name + " | " + Duration;
         }
     }
 }

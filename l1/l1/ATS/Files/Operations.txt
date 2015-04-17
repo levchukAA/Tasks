@@ -1,0 +1,8 @@
+In ATS was added new client Anton Levchuk
+In ATS was added new client Roman Shirokov
+In ATS was added new client Emre Can
+In ATS was added new client Artem Karpovich
+Client Anton Levchuk calls to Roman Shirokov, duration = 9, at 17.04.2015 10:32:11
+
+Client Emre Can calls to Artem Karpovich, duration = 8, at 17.04.2015 10:32:11
+

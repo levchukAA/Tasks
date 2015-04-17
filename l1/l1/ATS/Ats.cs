@@ -13,22 +13,28 @@ namespace ATS
 
     public class ATS
     {
-        private const string OutputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\infoBase.txt";
+        private const string ClientsFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Clients.txt";
+        private const string CallsFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Calls.txt";
+        private const string OperationsFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Operations.txt";
         private const string InputFile = @"d:\epam\Tasks\l1\l1\ATS\Files\Contract1.txt";
+        readonly Random _rnd = new Random();
+        private static string _operation = "";
         public delegate void GenerateCallDelegate(int port0, int port1);
         public event GenerateCallDelegate GenerateCallEvent;
-        readonly Random _rnd = new Random();
-
-        public ATS()
-        {
-            MethodsForFiles.ReadContracts(InputFile);
-            GenerateNumbers();
-        }
-
         public static readonly List<Client> Clients = new List<Client>();
         public static readonly List<Call> Calls = new List<Call>();
         public static readonly int[] ArchiveNumbers = new int[90000];
+        
 
+        public ATS()
+        {
+            File.Delete(ClientsFile);
+            File.Delete(CallsFile);
+            File.Delete(OperationsFile);
+            GenerateNumbers();
+            MethodsForFiles.ReadContracts(InputFile);
+        }
+        
         public void GenerateNumbers()
         {
             for (var i = 0; i < ArchiveNumbers.Length; i++)
@@ -54,7 +60,7 @@ namespace ATS
                 string[] stringPorts = call.Split('|');
                 int port0 = Int32.Parse(stringPorts[0]);
                 int port1 = Int32.Parse(stringPorts[1]);
-                if (GenerateCallEvent != null) GenerateCallEvent(port0,port1);
+                if (GenerateCallEvent != null) GenerateCallEvent(port0, port1);
             }
         }
 
@@ -74,18 +80,25 @@ namespace ATS
             {
                 
                 int duration = _rnd.Next(1, 10);
-                Calls.Add(new Call
+                Call newCall = new Call
                 {
                     Port0 = Clients[port0].Terminal,
                     Port1 = Clients[port1].Terminal,
                     Duration = duration
-                });
+                };
+                Calls.Add(newCall);
                 Clients[port0].Terminal.Status = StatusPort.Busy;
                 Clients[port1].Terminal.Status = StatusPort.Busy;
+                _operation = "Client " + Clients[port0].Name + " calls to "  + Clients[port1].Name +
+                    ", duration = " + newCall.Duration + ", at " + DateTime.Now;
+                WriteCall(newCall);
+                WriteOperation(_operation);
             }
             else
             {
-                Console.WriteLine("Call {0} - {1} is impossible", Clients[port0].Show(), Clients[port1].Show());
+                _operation = "Client " + Clients[port0].Name + " calls to " + Clients[port1].Name +
+                    " but this call was unsuccessful";
+                WriteOperation(_operation);
             }
         }
 
@@ -100,22 +113,25 @@ namespace ATS
                 Number = ArchiveNumbers[usingPorts],
                 Tariff = new Tariff(StatusTariff.Default)
             };
+            _operation = "In ATS was added new client " + newClient.Name;
             Clients.Add(newClient);
+            WriteClient(newClient);
+            WriteOperation(_operation);
         }
 
-        public void WriteClients()
+        public static void WriteClient(Client client)
         {
-            string infoBase = Clients.Aggregate("Clients in ATS:\r\n",
-                (current, client) => current + client.Show() + "\r\n");
-            infoBase = infoBase + "-----------------------------------------------\r\n";
-            File.WriteAllText(OutputFile, infoBase);
+            File.AppendAllText(ClientsFile, client.Show() + "\r\n");
         }
 
-        public void WriteCalls()
+        public void WriteCall(Call call)
         {
-            string infoBase = "All calls in ATS:\r\n";
-            infoBase = Calls.Aggregate(infoBase, (current, call) => current + call.ToString() + "\r\n");
-            File.AppendAllText(OutputFile, infoBase);
+            File.AppendAllText(CallsFile, call + "\r\n");
+        }
+
+        public static void WriteOperation(string operation)
+        {
+            File.AppendAllText(OperationsFile, operation + "\r\n");
         }
     }
 }

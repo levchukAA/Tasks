@@ -1,9 +1,0 @@
-Clients in ATS:
-Anton Levchuk | 0 | 0 | Default
-Roman Shirokov | 0 | 1 | Default
-Emre Can | 0 | 2 | Default
-Artem Karpovich | 0 | 3 | Default
------------------------------------------------
-All calls in ATS:
-Anton Levchuk - Roman Shirokov | 4
-Emre Can - Artem Karpovich | 6

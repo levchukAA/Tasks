@@ -12,9 +12,7 @@ namespace ATS
         private static void Main(string[] args)
         {
             var ats = new ATS();
-            ats.WriteClients();
             ats.ReadEvents(@"d:\epam\Tasks\l1\l1\ATS\Files\Events.txt");
-            ats.WriteCalls();
         }
     }
 }

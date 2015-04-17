@@ -9,6 +9,12 @@ namespace ATS
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string Name
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
         public int Number { get; set; }
         public Terminal Terminal { get; set; }
         public Tariff Tariff { get; set; }

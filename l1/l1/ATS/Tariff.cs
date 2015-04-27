@@ -42,7 +42,7 @@ namespace ATS
 
         public void AddCall(Call call)
         {
-            Arrear = Arrear + call.Duration*Cost/60;
+            Arrear = Arrear + call.Duration*MinuteCost;
         }
 
     }

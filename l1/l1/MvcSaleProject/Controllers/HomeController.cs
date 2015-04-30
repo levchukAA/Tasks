@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace MvcSaleProject.Controllers
 {
     public class HomeController : Controller
@@ -11,7 +12,6 @@ namespace MvcSaleProject.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 

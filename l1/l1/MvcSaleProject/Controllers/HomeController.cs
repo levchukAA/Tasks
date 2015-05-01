@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
-using SaleProject;
+using MvcSaleProject.Models;
 
 
 namespace MvcSaleProject.Controllers
@@ -13,13 +14,13 @@ namespace MvcSaleProject.Controllers
     {
         public ActionResult Index()
         {
-            var dataTable = Methods.GetTableCsv(@"D:\epam\Tasks\l1\l1\SaleProject\bin\Debug\6.csv");
-            using (var dataBase = new BloggingContext())
+            var dataTable = SaleProject.Methods.GetTableCsv("6.csv");
+            using (var dataBase = new UsersContext())
             {
                 for (var i = 0; i < dataTable.Rows.Count; i++)
                 {
                     var varTime = (DateTime)dataTable.Rows[i][0];
-                    var record = new ArchiveRecord
+                    var record = new Models.ArchiveRecord
                     {
                         Date = varTime,
                         Client = (string)dataTable.Rows[i][1],
@@ -45,6 +46,15 @@ namespace MvcSaleProject.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Info()
+        {
+            using (UsersContext dataBase = new UsersContext())
+            {
+                ViewBag.item = dataBase.Archive;
+            }
             return View();
         }
     }

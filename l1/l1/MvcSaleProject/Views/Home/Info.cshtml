@@ -1,0 +1,32 @@
+﻿@using MvcSaleProject.Models
+@using (var dataBase = new UsersContext())
+{
+    <table>
+        
+            @foreach (var item in dataBase.Archive)
+            {
+                <tr><th>
+                    @item.SaleId
+                </th>
+                <th>
+                    @item.Date
+</th>
+<th>
+    @item.Client
+</th>
+<th>
+    @item.Goods
+</th>
+<th>
+    @item.Amount
+</th></tr>
+            }
+    
+                
+                
+            
+        
+    </table>
+}
+
+            <h2>Info</h2>

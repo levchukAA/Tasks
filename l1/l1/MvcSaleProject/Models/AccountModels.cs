@@ -16,6 +16,8 @@ namespace MvcSaleProject.Models
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<ArchiveRecord> Archive { get; set; }
+        
     }
 
     [Table("UserProfile")]
@@ -26,7 +28,16 @@ namespace MvcSaleProject.Models
         public int UserId { get; set; }
         public string UserName { get; set; }
     }
-
+    [Table("Archive")]
+    public class ArchiveRecord
+    {
+        [Key]
+        public int SaleId { get; set; }
+        public DateTime Date { get; set; }
+        public string Client { get; set; }
+        public string Goods { get; set; }
+        public int Amount { get; set; }
+    }
     public class RegisterExternalLoginModel
     {
         [Required]

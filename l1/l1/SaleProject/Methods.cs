@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
 using System.IO;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using MvcSaleProject.Models;
 
 namespace SaleProject
 {
@@ -44,13 +40,13 @@ Dbq=" + Folder + ";Extensions=asc,csv,tab,txt;Persist Security Info=False");
         }
         public static void CsvToDataBase(object file)
         {
-            var path = (string) file;
+            string path = (string) file;
             var dataTable = GetTableCsv(path);
-            using (var dataBase = new BloggingContext())
+            using (UsersContext dataBase = new UsersContext())
             {
                 for (var i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    var varTime = (DateTime) dataTable.Rows[i][0];
+                    DateTime varTime = (DateTime) dataTable.Rows[i][0];
                     var record = new ArchiveRecord
                     {
                         Date = varTime,

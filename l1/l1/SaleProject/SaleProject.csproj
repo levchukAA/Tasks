@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
@@ -69,69 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveRecord.cs" />
     <Compile Include="Methods.cs" />
-    <Compile Include="Migrations\201504091751261_InitialCreate.cs" />
-    <Compile Include="Migrations\201504091751261_InitialCreate.Designer.cs">
-      <DependentUpon>201504091751261_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091904146_AddUrl.cs" />
-    <Compile Include="Migrations\201504091904146_AddUrl.Designer.cs">
-      <DependentUpon>201504091904146_AddUrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091907111_AddUser.cs" />
-    <Compile Include="Migrations\201504091907111_AddUser.Designer.cs">
-      <DependentUpon>201504091907111_AddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091909564_ChangeDisplayName.cs" />
-    <Compile Include="Migrations\201504091909564_ChangeDisplayName.Designer.cs">
-      <DependentUpon>201504091909564_ChangeDisplayName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504091951047_DeleteOld.cs" />
-    <Compile Include="Migrations\201504091951047_DeleteOld.Designer.cs">
-      <DependentUpon>201504091951047_DeleteOld.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504092045097_AddItems.cs" />
-    <Compile Include="Migrations\201504092045097_AddItems.Designer.cs">
-      <DependentUpon>201504092045097_AddItems.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504092100236_Example.cs" />
-    <Compile Include="Migrations\201504092100236_Example.Designer.cs">
-      <DependentUpon>201504092100236_Example.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504110019418_AddChanges.cs" />
-    <Compile Include="Migrations\201504110019418_AddChanges.Designer.cs">
-      <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504111911435_DateToString.cs" />
-    <Compile Include="Migrations\201504111911435_DateToString.Designer.cs">
-      <DependentUpon>201504111911435_DateToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504111915091_Example1.cs" />
-    <Compile Include="Migrations\201504111915091_Example1.Designer.cs">
-      <DependentUpon>201504111915091_Example1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504111921100_ChangeDate.cs" />
-    <Compile Include="Migrations\201504111921100_ChangeDate.Designer.cs">
-      <DependentUpon>201504111921100_ChangeDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504301920259_ChangeDate1.cs" />
-    <Compile Include="Migrations\201504301920259_ChangeDate1.Designer.cs">
-      <DependentUpon>201504301920259_ChangeDate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504301926334_ChangeDate2.cs" />
-    <Compile Include="Migrations\201504301926334_ChangeDate2.Designer.cs">
-      <DependentUpon>201504301926334_ChangeDate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504301946246_ChangeBase.cs" />
-    <Compile Include="Migrations\201504301946246_ChangeBase.Designer.cs">
-      <DependentUpon>201504301946246_ChangeBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504302015451_ChangeBase2.cs" />
-    <Compile Include="Migrations\201504302015451_ChangeBase2.Designer.cs">
-      <DependentUpon>201504302015451_ChangeBase2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -152,51 +91,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504091751261_InitialCreate.resx">
-      <DependentUpon>201504091751261_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091904146_AddUrl.resx">
-      <DependentUpon>201504091904146_AddUrl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091907111_AddUser.resx">
-      <DependentUpon>201504091907111_AddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091909564_ChangeDisplayName.resx">
-      <DependentUpon>201504091909564_ChangeDisplayName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504091951047_DeleteOld.resx">
-      <DependentUpon>201504091951047_DeleteOld.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504092045097_AddItems.resx">
-      <DependentUpon>201504092045097_AddItems.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504092100236_Example.resx">
-      <DependentUpon>201504092100236_Example.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504110019418_AddChanges.resx">
-      <DependentUpon>201504110019418_AddChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504111911435_DateToString.resx">
-      <DependentUpon>201504111911435_DateToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504111915091_Example1.resx">
-      <DependentUpon>201504111915091_Example1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504111921100_ChangeDate.resx">
-      <DependentUpon>201504111921100_ChangeDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504301920259_ChangeDate1.resx">
-      <DependentUpon>201504301920259_ChangeDate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504301926334_ChangeDate2.resx">
-      <DependentUpon>201504301926334_ChangeDate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504301946246_ChangeBase.resx">
-      <DependentUpon>201504301946246_ChangeBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504302015451_ChangeBase2.resx">
-      <DependentUpon>201504302015451_ChangeBase2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +114,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MvcSaleProject\MvcSaleProject.csproj">
+      <Project>{b4992bc3-1813-4b54-9608-14cc813086c5}</Project>
+      <Name>MvcSaleProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

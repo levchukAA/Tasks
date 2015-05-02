@@ -1,32 +1,50 @@
 ﻿@using MvcSaleProject.Models
-@using (var dataBase = new UsersContext())
-{
-    <table>
-        
-            @foreach (var item in dataBase.Archive)
-            {
-                <tr><th>
-                    @item.SaleId
-                </th>
-                <th>
-                    @item.Date
-</th>
-<th>
-    @item.Client
-</th>
-<th>
-    @item.Goods
-</th>
-<th>
-    @item.Amount
-</th></tr>
-            }
-    
-                
-                
-            
-        
-    </table>
-}
+<h2>Full information about sales</h2>
 
-            <h2>Info</h2>
+<table>
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Client
+        </th>
+        <th>
+            Goods
+        </th>
+        <th>
+            Amount
+        </th>
+    </tr>
+        @using (var dataBase = new UsersContext())
+        {
+
+            foreach (var item in dataBase.Archive)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelUser => item.SaleId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelUser => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelUser => item.Client)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelUser => item.Goods)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelUser => item.Amount)
+                    </td>
+
+                </tr>
+            }
+
+        }
+    
+
+</table>

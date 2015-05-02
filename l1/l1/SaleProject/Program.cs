@@ -1,8 +1,4 @@
-﻿using System;
-using System.CodeDom;
-using System.Data.Entity;
-
-namespace SaleProject
+﻿namespace SaleProject
 {
     class Program
     {
@@ -10,10 +6,5 @@ namespace SaleProject
         {
             Methods.ViewAbilities();
         }
-    }
-    
-    public class BloggingContext : DbContext
-    {
-        public DbSet<ArchiveRecord> Archive { get; set; } 
     }
 }
